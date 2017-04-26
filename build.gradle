@@ -22,20 +22,22 @@ description = """spring-vue-sample"""
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'
 }
 
 
 repositories {
-     maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url "http://repo.maven.apache.org/maven2" }
 }
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.5.3.RELEASE'
-    compile group: 'org.projectlombok', name: 'lombok', version:'1.16.16'
-    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.5.3.RELEASE') {
-exclude(module: 'commons-logging')
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-freemarker'
+    compile 'org.projectlombok:lombok:1.16.16'
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
+        exclude(module: 'commons-logging')
     }
+    compile 'org.webjars.npm:bootstrap:3.3.5'
 }
 
 def webpackBin = "./node_modules/webpack/bin/webpack.js"
@@ -48,11 +50,6 @@ task installWebpack {
 
 task webpack(type: Exec, dependsOn: 'installWebpack') {
     executable webpackBin
-}
-
-task webpackWatch(type: Exec, dependsOn: 'installWebpack') {
-    executable webpackBin
-    args "-w"
 }
 
 build.dependsOn webpack

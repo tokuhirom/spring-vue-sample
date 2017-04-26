@@ -10,7 +10,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader'
             },
             {
                 test: /\.js$/,
@@ -20,10 +20,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $: 'jquery'
-        }),
-        new webpack.optimize.UglifyJsPlugin()
     ]
 }
 ;

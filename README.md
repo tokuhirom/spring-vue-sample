@@ -23,12 +23,12 @@
 開発時に必要なライブラリ・アプリケーションをインストールします。
 `--save-dev` オプションは、インストール後に package.json に開発時依存項目として追記するためのオプションです。
 
-    npm install --save-dev webpack babel-core babel-preset-es2015 vue-loader
+    npm install --save-dev webpack babel-core babel-preset-es2015 vue-loader css-loader vue-style-loader vue-html-loader vue-template-compiler
 
 vue.js, vue-router という、実行時に利用するライブラリをインストールします。
 `--save` オプションは、インストール後に package.json に依存項目として追記するためのオプションです。
 
-    npm install --save vue
+    npm install --save vue vuex
 
 # babel の設定
 

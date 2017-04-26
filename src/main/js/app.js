@@ -1,13 +1,20 @@
-function Hello() {
-    console.log("Hello!??");
-};
+import Vue from "vue";
+import App from './component/App.vue';
+import VueRouter from 'vue-router';
+import routes from './routes.js';
+import store from './store';
 
-class Test2 {
-    constructor(say) {
-        this.greet = say;
-    }
+Vue.use(VueRouter)
 
-    sayHello() {
-        console.log(this.greet);
-    }
-}
+const router = new VueRouter({
+    base: __dirname,
+    routes: routes
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    new Vue({
+        router,
+        store,
+        render: h => h(App)
+    }).$mount('#app');
+});
