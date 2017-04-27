@@ -6,13 +6,16 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'com.moowork.gradle:gradle-node-plugin:0.12'
     }
 }
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: "com.moowork.node"
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -39,16 +42,16 @@ dependencies {
     }
 }
 
-def webpackBin = "./node_modules/webpack/bin/webpack.js"
-
-task installWebpack {
-    if (!new File(webpackBin).exists()) {
-        commandLine "npm", "install"
+task webpack(type: NodeTask, dependsOn: 'npmInstall') {
+    def osName = System.getProperty("os.name").toLowerCase();
+    if (osName.contains("windows")) {
+        script = project.file('node_modules/webpack/bin/webpack.js')
+    } else {
+        script = project.file('node_modules/.bin/webpack')
     }
 }
 
-task webpack(type: Exec, dependsOn: 'installWebpack') {
-    executable webpackBin
-}
+processResources.dependsOn 'webpack'
 
-build.dependsOn webpack
+clean.delete << file('node_modules')
+

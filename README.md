@@ -39,7 +39,7 @@ webpack をインストールします。
 vue.js, vuex, vue-router という、実行時に利用するライブラリをインストールします。
 `--save` オプションは、インストール後に package.json に依存項目として追記するためのオプションです。
 
-    npm install --save vue vuex bootstrap vue-router
+    npm install --save vue vuex bootstrap vue-router axios
 
 # webpack の設定
 
@@ -100,19 +100,32 @@ webpack を実行する gradle task を設定します。
 `./gradlew build` した時に、uber jar の中に webpack の成果物を埋めるような設定を行います。
 
 ```groovy
-def webpackBin = "./node_modules/webpack/bin/webpack.js"
-
-task installWebpack {
-    if (!new File(webpackBin).exists()) {
-        commandLine "npm", "install"
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.moowork.gradle:gradle-node-plugin:0.12'
     }
 }
 
-task webpack(type: Exec, dependsOn: 'installWebpack') {
-    executable webpackBin
+apply plugin: 'java'
+apply plugin: "com.moowork.node"
+
+task webpack(type: NodeTask, dependsOn: 'npmInstall') {
+    def osName = System.getProperty("os.name").toLowerCase();
+    if (osName.contains("windows")) {
+        script = project.file('node_modules/webpack/bin/webpack.js')
+    } else {
+        script = project.file('node_modules/.bin/webpack')
+    }
 }
 
-build.dependsOn webpack
+processResources.dependsOn 'webpack'
+
+clean.delete << file('node_modules')
+
 ```
 
 `./gradlew build` すると webpack が実行され、jar の中にビルド済みの js が梱包されます。
