@@ -25,6 +25,7 @@ module.exports = {
                 ],
             },
             {
+                // bootstrap に含まれる font を data url に変換する。
                 test: /\.(svg|ttf|woff2|woff|eot)$/,
                 loader: 'url-loader'
             }]
