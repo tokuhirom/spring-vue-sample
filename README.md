@@ -31,7 +31,7 @@ webpack をインストールします。
 開発時に必要なライブラリ・アプリケーションをインストールします。
 `--save-dev` オプションは、インストール後に package.json に開発時依存項目として追記するためのオプションです。
 
-    npm install --save-dev webpack babel-core babel-preset-es2015 \
+    npm install --save-dev webpack babel-core babel-preset-es2015 babel-loader \
         vue-loader vue-style-loader vue-html-loader vue-template-compiler \
         file-loader style-loader url-loader css-loader \
         extract-text-webpack-plugin webpack
