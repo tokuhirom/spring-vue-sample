@@ -33,7 +33,8 @@ webpack をインストールします。
 
     npm install --save-dev webpack babel-core babel-preset-es2015 \
         vue-loader vue-style-loader vue-html-loader vue-template-compiler \
-        file-loader style-loader url-loader css-loader
+        file-loader style-loader url-loader css-loader \
+        extract-text-webpack-plugin webpack
 
 vue.js, vuex, vue-router という、実行時に利用するライブラリをインストールします。
 `--save` オプションは、インストール後に package.json に依存項目として追記するためのオプションです。
