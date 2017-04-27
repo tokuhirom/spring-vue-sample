@@ -37,7 +37,6 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test') {
         exclude(module: 'commons-logging')
     }
-    compile 'org.webjars.npm:bootstrap:3.3.5'
 }
 
 def webpackBin = "./node_modules/webpack/bin/webpack.js"

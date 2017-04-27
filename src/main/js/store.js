@@ -10,7 +10,6 @@ export default new Vuex.Store({
     },
     getters: {
         products(state) {
-            console.log(state);
             return state.products;
         }
     },
