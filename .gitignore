@@ -3,6 +3,7 @@ build/
 /node_modules
 /.gradle/
 /out/
+/classes/
 
 ### STS ###
 .apt_generated
