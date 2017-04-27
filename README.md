@@ -96,11 +96,6 @@ task webpack(type: Exec, dependsOn: 'installWebpack') {
     executable webpackBin
 }
 
-task webpackWatch(type: Exec, dependsOn: 'installWebpack') {
-    executable webpackBin
-    args "-w"
-}
-
 build.dependsOn webpack
 ```
 
