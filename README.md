@@ -16,9 +16,11 @@
     src/main/js/                          ← JS code
     build/resources/main/static/bundle.js ← 成果物
 
-最終的には uber jar(fat jar ともいう)が生成されるようにします。
+最終的には  webpack の成果物が含まれる uber jar(fat jar ともいう)が `./gradlew build` で生成されるようにします。
 
 # セットアップ
+
+node.js を最新版にしてください。
 
 webpack をインストールします。
 
