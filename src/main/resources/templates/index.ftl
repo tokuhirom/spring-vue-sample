@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>My page</title>
+    <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
 <div id="app"></div>
