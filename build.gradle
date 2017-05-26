@@ -28,6 +28,11 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+node {
+    version = '6.6.0'
+    npmVersion = '3.10.7'
+    download = true
+}
 
 repositories {
     maven { url "http://repo.maven.apache.org/maven2" }

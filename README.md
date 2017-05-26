@@ -113,6 +113,12 @@ buildscript {
 apply plugin: 'java'
 apply plugin: "com.moowork.node"
 
+node {
+    version = '6.6.0'
+    npmVersion = '3.10.7'
+    download = true
+}
+
 task webpack(type: NodeTask, dependsOn: 'npmInstall') {
     def osName = System.getProperty("os.name").toLowerCase();
     if (osName.contains("windows")) {
