@@ -1,6 +1,5 @@
 package com.example.response;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Value;
 
