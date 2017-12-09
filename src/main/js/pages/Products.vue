@@ -10,9 +10,20 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import axios from "axios";
 
     export default {
-        computed: mapGetters(['products'])
+        data() {
+            return {
+                products: []
+            }
+        },
+        mounted() {
+            axios.get('/api/products')
+                .then((response) => {
+                    this.products = response.data.products;
+                });
+        }
     }
 </script>
+

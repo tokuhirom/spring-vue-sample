@@ -13,10 +13,4 @@
 
 <script>
     import "bootstrap/dist/css/bootstrap.min.css";
-
-    export default {
-        mounted() {
-            this.$store.dispatch("getProducts");
-        }
-    }
 </script>

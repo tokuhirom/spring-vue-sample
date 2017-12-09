@@ -38,10 +38,10 @@ webpack をインストールします。
         file-loader style-loader url-loader css-loader \
         extract-text-webpack-plugin webpack
 
-vue.js, vuex, vue-router という、実行時に利用するライブラリをインストールします。
+vue.js, vue-router という、実行時に利用するライブラリをインストールします。
 `--save` オプションは、インストール後に package.json に依存項目として追記するためのオプションです。
 
-    npm install --save vue vuex bootstrap vue-router axios
+    npm install --save vue bootstrap vue-router axios
 
 # webpack の設定
 
