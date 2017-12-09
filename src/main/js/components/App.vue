@@ -3,7 +3,7 @@
         <div class="col-md-4">
             Menu
             <router-link to="/">Home</router-link>
-            <router-link to="/products">Products</router-link>
+            <router-link to="/product/">Products</router-link>
         </div>
         <div class="col-md-6">
             <router-view></router-view>

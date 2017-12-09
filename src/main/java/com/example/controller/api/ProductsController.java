@@ -1,35 +1,33 @@
 package com.example.controller.api;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.example.model.Product;
+import com.example.repository.ProductRepository;
+import com.example.request.AddProductRequest;
+import com.example.response.BasicResponse;
+import com.example.response.ProductListResponse;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @RestController
 public class ProductsController {
-    @GetMapping("/api/products")
+    private final ProductRepository productRepository;
+
+    public ProductsController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    @GetMapping("/api/product/")
     public ProductListResponse productList() {
-        return new ProductListResponse(Arrays.asList(
-                new Product("foo"),
-                new Product("bar")));
+        return new ProductListResponse(productRepository.findAll());
     }
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class ProductListResponse {
-        List<Product> products;
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Product {
-        String name;
+    @PostMapping("/api/product/add")
+    public BasicResponse addProduct(@Validated @RequestBody AddProductRequest request) {
+        Product product = new Product(request.getName());
+        productRepository.addProduct(product);
+        return new BasicResponse();
     }
 }

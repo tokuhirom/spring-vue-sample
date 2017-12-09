@@ -1,4 +1,5 @@
-import Products from "./pages/Products.vue";
+import ListProduct from "./pages/product/ListProduct.vue";
+import AddProduct from "./pages/product/AddProduct.vue";
 import Home from "./pages/Home.vue";
 
 export default [
@@ -7,8 +8,11 @@ export default [
         component: Home
     },
     {
-        path: '/products',
-        component: Products
+        path: '/product/',
+        component: ListProduct
+    },
+    {
+        path: '/product/add',
+        component: AddProduct
     }
 ]
-

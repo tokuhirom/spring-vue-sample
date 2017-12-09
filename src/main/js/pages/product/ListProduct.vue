@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-link to="/product/add" class="btn btn-default">Create new product</router-link>
         <div>Products</div>
         <ul>
             <template v-for="product in products">
@@ -19,7 +20,7 @@
             }
         },
         mounted() {
-            axios.get('/api/products')
+            axios.get('/api/product/')
                 .then((response) => {
                     this.products = response.data.products;
                 });
