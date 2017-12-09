@@ -1,0 +1,5 @@
+# Spring security enables Basic auth by default.
+# But in most cases, it's not needed. We should disable this.
+security:
+  basic:
+    enabled: false
