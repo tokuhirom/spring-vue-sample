@@ -3,7 +3,7 @@
         <h1>Add new product</h1>
         <form v-on:submit.prevent="send">
             <input v-model="name" placeholder="product name">
-            <button>Register new product</button>
+            <button class="btn btn-primary">Register new product</button>
         </form>
     </div>
 </template>
