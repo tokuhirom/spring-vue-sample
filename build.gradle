@@ -42,6 +42,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-freemarker'
     compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-session'
     compile 'org.projectlombok:lombok:1.16.16'
     testCompile('org.springframework.boot:spring-boot-starter-test') {
         exclude(module: 'commons-logging')

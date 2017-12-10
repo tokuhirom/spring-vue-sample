@@ -3,3 +3,6 @@
 security:
   basic:
     enabled: false
+
+# When you can't serve generated resources from tomcat, you can enable following log for debugging.
+# logging.level.org.springframework.web.servlet.resource: trace
