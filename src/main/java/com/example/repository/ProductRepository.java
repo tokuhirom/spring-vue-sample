@@ -12,15 +12,20 @@ public class ProductRepository {
 
     public ProductRepository() {
         products = new ArrayList<>();
-        products.add(new Product("foo"));
-        products.add(new Product("bar"));
+        products.add(new Product(1L, "foo"));
+        products.add(new Product(2L, "bar"));
     }
 
     public List<Product> findAll() {
         return this.products;
     }
 
-    public void addProduct(Product product) {
+    public Product addProduct(String name) {
+        Product product = new Product(
+                (long) (products.size() + 1),
+                name
+        );
         this.products.add(product);
+        return product;
     }
 }

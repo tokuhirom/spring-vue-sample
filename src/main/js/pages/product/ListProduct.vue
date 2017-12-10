@@ -2,11 +2,18 @@
     <div>
         <router-link to="/product/add" class="btn btn-default">Create new product</router-link>
         <div>Products</div>
-        <ul>
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
             <template v-for="product in products">
-                <li>Name: {{product.name}}</li>
+                <tr>
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                </tr>
             </template>
-        </ul>
+        </table>
     </div>
 </template>
 

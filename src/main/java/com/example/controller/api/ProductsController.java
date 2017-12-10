@@ -3,7 +3,7 @@ package com.example.controller.api;
 import com.example.model.Product;
 import com.example.repository.ProductRepository;
 import com.example.request.AddProductRequest;
-import com.example.response.BasicResponse;
+import com.example.response.ProductCreateResponse;
 import com.example.response.ProductListResponse;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +25,8 @@ public class ProductsController {
     }
 
     @PostMapping("/api/product/add")
-    public BasicResponse addProduct(@Validated @RequestBody AddProductRequest request) {
-        Product product = new Product(request.getName());
-        productRepository.addProduct(product);
-        return new BasicResponse();
+    public ProductCreateResponse addProduct(@Validated @RequestBody AddProductRequest request) {
+        Product product = productRepository.addProduct(request.getName());
+        return new ProductCreateResponse(product);
     }
 }
