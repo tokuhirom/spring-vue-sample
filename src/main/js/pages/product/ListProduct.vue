@@ -6,11 +6,15 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>&nbsp;</th>
             </tr>
             <template v-for="product in products">
                 <tr>
                     <td>{{product.id}}</td>
                     <td>{{product.name}}</td>
+                    <td>
+                        <router-link :to="{path:'/product/edit/'+product.id}">Edit</router-link>
+                    </td>
                 </tr>
             </template>
         </table>
