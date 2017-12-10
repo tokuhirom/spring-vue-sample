@@ -5,10 +5,7 @@ import com.example.model.Product;
 import com.example.repository.ProductRepository;
 import com.example.request.AddProductRequest;
 import com.example.request.EditProductRequest;
-import com.example.response.ProductCreateResponse;
-import com.example.response.ProductEditResponse;
-import com.example.response.ProductGetResponse;
-import com.example.response.ProductListResponse;
+import com.example.response.*;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +42,12 @@ public class ProductsController {
                 request.getName()
         );
         return new ProductEditResponse(product);
+    }
+
+    @DeleteMapping("/api/product/{id}")
+    public ProductDeleteResponse delete(@PathVariable("id") Integer id) {
+        Product product = productRepository.delete(id);
+        return new ProductDeleteResponse(product);
     }
 
 }

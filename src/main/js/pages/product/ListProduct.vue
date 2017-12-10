@@ -13,7 +13,10 @@
                     <td>{{product.id}}</td>
                     <td>{{product.name}}</td>
                     <td>
-                        <router-link :to="{path:'/product/edit/'+product.id}">Edit</router-link>
+                        <router-link :to="{path:'/product/edit/'+product.id}" class="btn btn-light">Edit</router-link>
+                    </td>
+                    <td>
+                        <router-link :to="{path:'/product/delete/'+product.id}" class="btn btn-danger">Delete</router-link>
                     </td>
                 </tr>
             </template>
