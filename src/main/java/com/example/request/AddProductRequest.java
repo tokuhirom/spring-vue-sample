@@ -1,10 +1,10 @@
 package com.example.request;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotNull;
 
-@Data
+import lombok.Value;
+
+@Value
 public class AddProductRequest {
     @NotNull
     String name;
