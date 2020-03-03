@@ -1,15 +1,17 @@
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+    mode: 'production', // https://webpack.js.org/configuration/mode/
     entry: './src/main/js/app.js',
     output: {
         filename: 'js/bundle.js',
         path: __dirname + '/build/resources/main/static'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
@@ -19,28 +21,26 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015']
+                        presets: ['@babel/preset-env']
                     }
                 },
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             // bootstrap に含まれる font 等を data url に変換する。
-            {test: /\.svg$/, loader: 'url-loader?mimetype=image/svg+xml'},
-            {test: /\.woff$/, loader: 'url-loader?mimetype=application/font-woff'},
-            {test: /\.woff2$/, loader: 'url-loader?mimetype=application/font-woff'},
-            {test: /\.eot$/, loader: 'url-loader?mimetype=application/font-woff'},
-            {test: /\.ttf$/, loader: 'url-loader?mimetype=application/font-woff'}
+            {test: /\.svg$/, use: [ {loader: 'url-loader', options: { mimetype: 'image/svg+xml' }} ]},
+            {test: /\.woff$/, use: [ {loader: 'url-loader', options: { mimetype: 'application/font-woff' }} ]},
+            {test: /\.woff2$/, use: [ {loader: 'url-loader', options: { mimetype: 'application/font-woff' }} ]},
+            {test: /\.eot$/, use: [ {loader: 'url-loader', options: { mimetype: 'application/font-woff' }} ]},
+            {test: /\.ttf$/, use: [ {loader: 'url-loader', options: { mimetype: 'application/font-woff' }} ]}
         ]
     },
     plugins: [
-        new ExtractTextPlugin("css/styles.css"),
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin(),
         // IntelliJ IDEA uses out/production/resources/ as a classpath.
         new FileManagerPlugin({
             onEnd: {
@@ -50,8 +50,8 @@ module.exports = {
                         destination: __dirname + '/out/production/resources/static/js/bundle.js'
                     },
                     {
-                        source: __dirname + '/build/resources/main/static/css/styles.css',
-                        destination: __dirname + '/out/production/resources/static/css/styles.css'
+                        source: __dirname + '/build/resources/main/static/main.css',
+                        destination: __dirname + '/out/production/resources/static/main.css'
                     }
                 ]
             }
