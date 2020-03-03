@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>My page</title>
-    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="app"></div>

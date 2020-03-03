@@ -28,7 +28,12 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: __dirname + "/build/resources/main/static/css/"
+                    }
+                }, 'css-loader'],
             },
             // bootstrap に含まれる font 等を data url に変換する。
             {test: /\.svg$/, use: [ {loader: 'url-loader', options: { mimetype: 'image/svg+xml' }} ]},
@@ -40,7 +45,9 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "/css/main.css"
+        }),
         // IntelliJ IDEA uses out/production/resources/ as a classpath.
         new FileManagerPlugin({
             onEnd: {
@@ -50,8 +57,8 @@ module.exports = {
                         destination: __dirname + '/out/production/resources/static/js/bundle.js'
                     },
                     {
-                        source: __dirname + '/build/resources/main/static/main.css',
-                        destination: __dirname + '/out/production/resources/static/main.css'
+                        source: __dirname + '/build/resources/main/static/css/main.css',
+                        destination: __dirname + '/out/production/resources/static/css/main.css'
                     }
                 ]
             }
